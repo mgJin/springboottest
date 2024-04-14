@@ -1,0 +1,17 @@
+{{>layouts/header}}
+
+<form action="/articles/create" method="post" class="container">
+  <div class="mb-3">
+    <label for="title" class="form-label">title</label>
+    <input name="title" type="text" class="form-control" id="title" aria-describedby="titleHelp">
+    <div id="titleHelp" class="form-text">We'll never share your title with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="textArea" class="form-label">text</label>
+    <textarea id="textArea" class="form-control" name="content" cols="" rows=""></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{{>layouts/footer}}
