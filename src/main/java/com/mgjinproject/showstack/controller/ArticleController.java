@@ -71,7 +71,7 @@ public class ArticleController {
     
     @PostMapping("articles/create")
     public String createArticle(ArticleForm form){
-        log.info(form.toString());
+        log.info("{}, product",form.toString());
         Article article = form.toEntity();
         log.info(article.toString());
         // System.out.println(article.toString());

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds"><!-- 로그백이 이 설정파일을 몇초마다 스캔하여 비교할지-->
+
+<!-- Appnerders -->
+<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>Debug</level>
+    </filter>
+    <encoder>
+        <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{30} %msg%n</pattern>
+    </encoder>
+</appender>
+
+<root level="INFO">
+    <appender-ref ref="console" />
+</root>
+</configuration>

@@ -3,8 +3,10 @@ package com.mgjinproject.showstack.config;
 import javax.swing.GroupLayout.Group;
 
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springdoc.core.properties.SwaggerUiConfigParameters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -18,28 +20,20 @@ import lombok.RequiredArgsConstructor;
                 description = "연습용 api 명세",
                 version = "v1")
 )
-
-@RequiredArgsConstructor
 @Configuration
 public class SwaggerConfiguration {
     
+    @Bean
+    public GroupedOpenApi customApi() {
+        return GroupedOpenApi.builder()
+                .group("api") // 그룹 이름
+                .packagesToScan("com.mgjinproject.showstack") // DTO가 있는 패키지
+                .build();
+    }
+    
     //GroupedOpenApi : API를 그룹화하여 관리하기 위한 클래스
     //pathToMatch : API 오퍼레이션에 해당하는 경로. 지금은 전체경로
-    @Bean
-    public GroupedOpenApi SampleArticlesApi(){
-     String[] paths = {"/articles/**"};
-     return GroupedOpenApi.builder()
-     .group("Sample v1-articles")
-     .pathsToMatch(paths)
-     .build();
-    }
-   @Bean
-   public GroupedOpenApi SampleOpenApi(){
-        String[] paths = {"/**"};
-        return GroupedOpenApi.builder()
-        .group("Sample v1")
-        .pathsToMatch(paths)
-        .build();
-   }
+    
+   
 }
 
