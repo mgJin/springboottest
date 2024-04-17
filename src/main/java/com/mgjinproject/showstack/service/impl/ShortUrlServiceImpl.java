@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.mgjinproject.showstack.dao.ShortUrlDAO;
 import com.mgjinproject.showstack.dto.NaverUriDTO;
 import com.mgjinproject.showstack.dto.ShortUrlResponseDTO;
 import com.mgjinproject.showstack.entity.ShortUrlEntity;
@@ -24,6 +25,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ShortUrlServiceImpl implements ShortUrlService{
 
+    private final ShortUrlDAO shortUrlDAO;
+
+    public ShortUrlServiceImpl(ShortUrlDAO shortUrlDAO){
+        this.shortUrlDAO = shortUrlDAO;
+    }
     @Override
     public ShortUrlResponseDTO generateShortUrl(String clientId, String clientSecret,String originalUrl){
         log.info("[generateShortUrl] request data : {}",originalUrl);
@@ -43,6 +49,20 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
         ShortUrlResponseDTO shortUrlResponseDTO = new ShortUrlResponseDTO(orgUrl,shortUrl);
         log.info("[generateShortUrl] ResponseDTO: {}",shortUrlResponseDTO.toString());
+        return shortUrlResponseDTO;
+    }
+
+    @Override
+    public ShortUrlResponseDTO getShortUrl(String clientId, String clientSecret,String originalUrl){
+        ShortUrlEntity shortUrlEntity=shortUrlDAO.getShortUrl(originalUrl);
+        ShortUrlResponseDTO shortUrlResponseDTO = new ShortUrlResponseDTO();
+        shortUrlResponseDTO.setShortUrl(shortUrlEntity.getUrl());
+        return shortUrlResponseDTO;
+    }
+    
+    public ShortUrlResponseDTO getOrgUrl(String clientId, String clientSecret,String shortUrl){
+        shortUrlDAO.getOriginalUrl(shortUrl);
+        ShortUrlResponseDTO shortUrlResponseDTO = new ShortUrlResponseDTO();
         return shortUrlResponseDTO;
     }
 

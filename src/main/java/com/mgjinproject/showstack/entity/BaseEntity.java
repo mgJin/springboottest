@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)//이벤트 리스너를 붙인다고 보면 된다.
 public class BaseEntity {
 
     @CreatedDate

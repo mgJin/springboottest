@@ -1,17 +1,10 @@
 package com.mgjinproject.showstack.config;
-
-import javax.swing.GroupLayout.Group;
-
 import org.springdoc.core.models.GroupedOpenApi;
-import org.springdoc.core.properties.SwaggerUiConfigParameters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.RequiredArgsConstructor;
+
 
 //OpenAPI 스펙을 따르는 API문서의 전체적인 정보를 정의하는 어노테이션
 //API의 버전,제목,설명등을 설정가능
